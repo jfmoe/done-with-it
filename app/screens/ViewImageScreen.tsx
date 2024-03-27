@@ -1,4 +1,5 @@
 import { Image, StyleSheet, View } from 'react-native';
+import colors from '../config/colors';
 
 const ViewImageScreen = () => {
   return (
@@ -14,19 +15,19 @@ const styles = StyleSheet.create({
   closeIcon: {
     width: 50,
     height: 50,
-    backgroundColor: '#fc5c65',
+    backgroundColor: colors.primary,
     position: 'absolute',
     top: 40,
     left: 30,
   },
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: colors.black,
   },
   deleteIcon: {
     width: 50,
     height: 50,
-    backgroundColor: '#4ecdc4',
+    backgroundColor: colors.secondary,
     position: 'absolute',
     top: 40,
     right: 30,
