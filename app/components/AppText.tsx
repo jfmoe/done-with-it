@@ -3,10 +3,11 @@ import { Platform, StyleSheet, Text } from 'react-native';
 
 interface Props {
   children: ReactNode;
+  style: Object;
 }
 
-const AppText = ({ children }: Props) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppText = ({ children, style }: Props) => {
+  return <Text style={[styles.text, style]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({
