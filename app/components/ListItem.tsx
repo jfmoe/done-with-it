@@ -10,7 +10,7 @@ interface Props {
 
 const ListItem = ({ title, subTitle, image }: Props) => {
   return (
-    <View style={styles.listItem}>
+    <View style={styles.container}>
       <Image style={styles.image} source={image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
@@ -21,8 +21,9 @@ const ListItem = ({ title, subTitle, image }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  listItem: {
+  container: {
     flexDirection: 'row',
+    padding: 15,
   },
   image: {
     width: 70,
