@@ -6,6 +6,7 @@ import AppFormField from '../components/AppFormField';
 import Screen from '../components/Screen';
 import SubmitButton from '../components/SubmitButton';
 import colors from '../config/colors';
+import AppForm from '../components/AppForm';
 
 const schema = z.object({
   email: z.string().email(),
@@ -24,7 +25,7 @@ const LoginScreen = () => {
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />
-      <FormProvider {...methods}>
+      <AppForm useFormReturn={methods}>
         <AppFormField
           name="email"
           autoCapitalize="none"
@@ -43,7 +44,7 @@ const LoginScreen = () => {
           textContentType="password"
         />
         <SubmitButton onSubmit={onSubmit}>Login</SubmitButton>
-      </FormProvider>
+      </AppForm>
     </Screen>
   );
 };
