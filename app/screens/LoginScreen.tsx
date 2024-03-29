@@ -1,10 +1,10 @@
-import { Controller, useForm, FieldValues } from 'react-hook-form';
-import { Image, StyleSheet, Text } from 'react-native';
-import AppButton from '../components/AppButton';
-import AppTextInput from '../components/AppTextInput';
-import Screen from '../components/Screen';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FieldValues, useForm, FormProvider } from 'react-hook-form';
+import { Image, StyleSheet } from 'react-native';
+import { z } from 'zod';
+import AppButton from '../components/AppButton';
+import AppFormField from '../components/AppFormField';
+import Screen from '../components/Screen';
 import colors from '../config/colors';
 
 const schema = z.object({
@@ -15,11 +15,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const LoginScreen = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
+  const methods = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
@@ -28,44 +24,27 @@ const LoginScreen = () => {
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require('../assets/logo-red.png')} />
-      <Controller
-        control={control}
-        name="email"
-        render={({ field: { value, onChange, onBlur } }) => (
-          <AppTextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="email-address"
-            icon="email"
-            placeholder="Email"
-            textContentType="emailAddress"
-            value={value}
-            onChangeText={(text) => onChange(text)}
-            onBlur={onBlur}
-            errorMessage={errors.email?.message}
-          />
-        )}
-      />
+      <FormProvider {...methods}>
+        <AppFormField
+          name="email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
+          icon="email"
+          placeholder="Email"
+          textContentType="emailAddress"
+        />
+        <AppFormField
+          name="password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          placeholder="Password"
+          textContentType="password"
+        />
+      </FormProvider>
 
-      <Controller
-        control={control}
-        name="password"
-        render={({ field: { value, onChange, onBlur } }) => (
-          <AppTextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            icon="lock"
-            placeholder="Password"
-            textContentType="password"
-            value={value}
-            onChangeText={onChange}
-            onBlur={onBlur}
-            errorMessage={errors.password?.message}
-          />
-        )}
-      />
-
-      <AppButton onPress={handleSubmit(onSubmit)}>Login</AppButton>
+      <AppButton onPress={methods.handleSubmit(onSubmit)}>Login</AppButton>
     </Screen>
   );
 };
