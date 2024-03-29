@@ -1,10 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, useForm, FormProvider } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { Image, StyleSheet } from 'react-native';
 import { z } from 'zod';
-import AppButton from '../components/AppButton';
 import AppFormField from '../components/AppFormField';
 import Screen from '../components/Screen';
+import SubmitButton from '../components/SubmitButton';
 import colors from '../config/colors';
 
 const schema = z.object({
@@ -42,9 +42,8 @@ const LoginScreen = () => {
           placeholder="Password"
           textContentType="password"
         />
+        <SubmitButton onSubmit={onSubmit}>Login</SubmitButton>
       </FormProvider>
-
-      <AppButton onPress={methods.handleSubmit(onSubmit)}>Login</AppButton>
     </Screen>
   );
 };
