@@ -29,6 +29,8 @@ const initialMessages: Message[] = [
 
 const MessagesScreen = () => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
+
   const handlePress = () => {
     console.log('pressed');
   };
@@ -55,6 +57,10 @@ const MessagesScreen = () => {
           />
         )}
         ItemSeparatorComponent={() => <ListItemSeparator />}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setMessages(initialMessages);
+        }}
       />
     </Screen>
   );
