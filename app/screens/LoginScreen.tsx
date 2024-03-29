@@ -1,12 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { Image, StyleSheet } from 'react-native';
 import { z } from 'zod';
-import AppFormField from '../components/AppFormField';
 import Screen from '../components/Screen';
-import SubmitButton from '../components/SubmitButton';
+import { AppForm, AppFormField, SubmitButton } from '../components/forms';
 import colors from '../config/colors';
-import AppForm from '../components/AppForm';
 
 const schema = z.object({
   email: z.string().email(),

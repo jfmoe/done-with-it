@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { FieldValues, useFormContext } from 'react-hook-form';
-import AppButton from './AppButton';
+import AppButton from '../AppButton';
 
 interface Props {
   children: ReactNode;

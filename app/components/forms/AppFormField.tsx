@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import AppTextInput from './AppTextInput';
+import AppTextInput from '../AppTextInput';
 
 type AppTextInput = ComponentProps<typeof AppTextInput>;
 
