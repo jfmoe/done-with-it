@@ -5,12 +5,17 @@ import colors from '../config/colors';
 interface Props {
   children: ReactNode;
   color?: 'primary' | 'secondary';
+  disabled?: boolean;
   onPress: () => void;
 }
 
-const AppButton = ({ children, color = 'primary', onPress }: Props) => {
+const AppButton = ({ children, color = 'primary', disabled = false, onPress }: Props) => {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor: colors[color] }]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: colors[color] }]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
   );
