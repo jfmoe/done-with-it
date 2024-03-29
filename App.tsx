@@ -1,10 +1,5 @@
-import { View } from 'react-native';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import Card from './app/components/Card';
-import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
-import ViewImageScreen from './app/screens/ViewImageScreen';
-import MessagesScreen from './app/screens/MessagesScreen';
+import AccountScreen from './app/screens/AccountScreen';
 
 export default function App() {
-  return <MessagesScreen />;
+  return <AccountScreen />;
 }
