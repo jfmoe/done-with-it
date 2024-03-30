@@ -1,4 +1,4 @@
-import { Controller, useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import AppPicker, { CategoryItem } from '../AppPicker';
 import ErrorMessage from './ErrorMessage';
 
@@ -10,23 +10,21 @@ interface Props {
 
 const AppFormPicker = ({ items, name, placeholder }: Props) => {
   const { control } = useFormContext();
+  const {
+    field: { value, onChange },
+    fieldState: { error },
+  } = useController({ name, control });
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { value, onChange }, fieldState: { error } }) => (
-        <>
-          <AppPicker
-            items={items}
-            onSelectItem={(item) => onChange(item)}
-            placeholder={placeholder}
-            selectedItem={value}
-          />
-          <ErrorMessage error={error?.message} />
-        </>
-      )}
-    />
+    <>
+      <AppPicker
+        items={items}
+        onSelectItem={(item) => onChange(item)}
+        placeholder={placeholder}
+        selectedItem={value}
+      />
+      <ErrorMessage error={error?.message} />
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { ComponentProps } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import AppTextInput from '../AppTextInput';
 import ErrorMessage from './ErrorMessage';
 
@@ -11,23 +11,21 @@ interface Props extends AppTextInput {
 
 const AppFormField = ({ name, ...otherProps }: Props) => {
   const { control } = useFormContext();
+  const {
+    field: { value, onChange, onBlur },
+    fieldState: { error },
+  } = useController({ name, control });
 
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
-        <>
-          <AppTextInput
-            value={value}
-            onChangeText={(text) => onChange(text)}
-            onBlur={onBlur}
-            {...otherProps}
-          />
-          <ErrorMessage error={error?.message} />
-        </>
-      )}
-    />
+    <>
+      <AppTextInput
+        value={value}
+        onChangeText={(text) => onChange(text)}
+        onBlur={onBlur}
+        {...otherProps}
+      />
+      <ErrorMessage error={error?.message} />
+    </>
   );
 };
 
