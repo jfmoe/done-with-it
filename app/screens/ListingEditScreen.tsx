@@ -1,15 +1,15 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FieldValues, useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 import { z } from 'zod';
-
+import Screen from '../components/Screen';
 import {
   AppForm as Form,
   AppFormField as FormField,
   AppFormPicker as Picker,
   SubmitButton,
 } from '../components/forms';
-import Screen from '../components/Screen';
-import { FieldValues, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import FormImagePicker from '../components/forms/FormImagePicker';
 
 const schema = z.object({
   title: z.string().min(1),
@@ -19,6 +19,7 @@ const schema = z.object({
     label: z.string(),
     value: z.number(),
   }),
+  images: z.array(z.string()).min(1),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -32,6 +33,9 @@ const categories = [
 const ListingEditScreen = () => {
   const methods = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      images: [],
+    },
   });
 
   const onSubmit = (data: FieldValues) => console.log(data);
@@ -39,6 +43,7 @@ const ListingEditScreen = () => {
   return (
     <Screen style={styles.container}>
       <Form useFormReturn={methods}>
+        <FormImagePicker name="images" />
         <FormField maxLength={255} name="title" placeholder="Title" />
         <FormField keyboardType="numeric" maxLength={8} name="price" placeholder="Price" />
         <Picker items={categories} name="category" placeholder="Category" />

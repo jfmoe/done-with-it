@@ -19,7 +19,7 @@ const ImageInputList = ({ imageUris, onRemoveImage, onAddImage }: Props) => {
         onContentSizeChange={() => scrollView.current?.scrollToEnd()}
       >
         <View style={styles.container}>
-          {imageUris.map((uri) => (
+          {imageUris?.map((uri) => (
             <ImageInput key={uri} imageUri={uri} onChangeImage={() => onRemoveImage(uri)} />
           ))}
           <ImageInput onChangeImage={(uris) => onAddImage(uris)} />
