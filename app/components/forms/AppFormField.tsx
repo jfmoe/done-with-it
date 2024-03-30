@@ -1,6 +1,7 @@
 import React, { ComponentProps } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import AppTextInput from '../AppTextInput';
+import ErrorMessage from './ErrorMessage';
 
 type AppTextInput = ComponentProps<typeof AppTextInput>;
 
@@ -16,13 +17,15 @@ const AppFormField = ({ name, ...otherProps }: Props) => {
       control={control}
       name={name}
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
-        <AppTextInput
-          value={value}
-          onChangeText={(text) => onChange(text)}
-          onBlur={onBlur}
-          errorMessage={error?.message}
-          {...otherProps}
-        />
+        <>
+          <AppTextInput
+            value={value}
+            onChangeText={(text) => onChange(text)}
+            onBlur={onBlur}
+            {...otherProps}
+          />
+          <ErrorMessage error={error?.message} />
+        </>
       )}
     />
   );

@@ -1,14 +1,13 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
+import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
 import defaultStyles from '../config/styles';
 import { MaterialIconsName } from './Icon';
 
 interface Props extends TextInputProps {
   icon?: MaterialIconsName;
-  errorMessage?: string;
 }
 
-const AppTextInput = ({ icon, errorMessage, ...otherProps }: Props) => {
+const AppTextInput = ({ icon, ...otherProps }: Props) => {
   return (
     <>
       <View style={styles.container}>
@@ -20,7 +19,6 @@ const AppTextInput = ({ icon, errorMessage, ...otherProps }: Props) => {
         />
         <TextInput style={styles.textInput} {...otherProps} />
       </View>
-      {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
     </>
   );
 };
@@ -40,10 +38,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     ...defaultStyles.text,
-  },
-  errorMessage: {
-    color: defaultStyles.colors.danger,
-    marginLeft: 10,
   },
 });
 

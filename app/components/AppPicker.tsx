@@ -6,7 +6,11 @@ import { MaterialIconsName } from './Icon';
 import { useState } from 'react';
 import Screen from './Screen';
 import PickerItem from './PickerItem';
-import { CategoryItem } from '../../App';
+
+export type CategoryItem = {
+  label: string;
+  value: number;
+};
 
 interface Props {
   icon?: MaterialIconsName;
@@ -16,7 +20,7 @@ interface Props {
   onSelectItem: (item: CategoryItem) => void;
 }
 
-const AppPicker = ({ icon, items, onSelectItem, selectedItem }: Props) => {
+const AppPicker = ({ icon, items, onSelectItem, selectedItem, placeholder }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -29,7 +33,7 @@ const AppPicker = ({ icon, items, onSelectItem, selectedItem }: Props) => {
             color={defaultStyles.colors.medium}
             style={styles.icon}
           />
-          <AppText style={styles.text}>{selectedItem?.label}</AppText>
+          <AppText style={styles.text}>{selectedItem?.label || placeholder}</AppText>
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
