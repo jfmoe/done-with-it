@@ -10,6 +10,7 @@ import {
   SubmitButton,
 } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
+import useLocation from '../hooks/useLocation';
 
 const schema = z.object({
   title: z.string().min(1),
@@ -37,8 +38,9 @@ const ListingEditScreen = () => {
       images: [],
     },
   });
+  const location = useLocation();
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  const onSubmit = (data: FieldValues) => console.log(location);
 
   return (
     <Screen style={styles.container}>
