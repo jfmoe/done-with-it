@@ -10,7 +10,7 @@ interface Props {
 const Screen = ({ children, style }: Props) => {
   return (
     <SafeAreaView style={styles.screen}>
-      <View style={style}>{children}</View>
+      <View style={[styles.view, style]}>{children}</View>
     </SafeAreaView>
   );
 };
@@ -18,6 +18,9 @@ const Screen = ({ children, style }: Props) => {
 const styles = StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
+    flex: 1,
+  },
+  view: {
     flex: 1,
   },
 });
