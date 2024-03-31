@@ -12,7 +12,7 @@ class APIClient<T> {
   }
 
   getAll() {
-    return apiClient.get<T>(this.endPoint);
+    return () => apiClient.get<T>(this.endPoint);
   }
 }
 

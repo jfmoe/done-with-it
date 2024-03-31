@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { StyleSheet } from 'react-native';
 
 interface Props {
   visible: boolean;

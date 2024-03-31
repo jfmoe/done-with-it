@@ -14,7 +14,7 @@ import ActivityIndicator from '../components/ActivityIndicator';
 type Props = StackScreenProps<FeedStackParamList, 'Listings'>;
 
 const ListingsScreen = ({ navigation: { navigate } }: Props) => {
-  const { listings, error, loading, reLoad } = useListings();
+  const { data: listings, error, loading, request } = useListings();
 
   return (
     <Screen style={styles.screen}>
@@ -22,7 +22,7 @@ const ListingsScreen = ({ navigation: { navigate } }: Props) => {
       {error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
-          <AppButton onPress={reLoad}>Retry</AppButton>
+          <AppButton onPress={request}>Retry</AppButton>
         </>
       )}
       <FlatList
