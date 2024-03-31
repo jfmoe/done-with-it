@@ -1,11 +1,20 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, ImageSourcePropType, StyleSheet } from 'react-native';
 
-import Screen from '../components/Screen';
 import Card from '../components/Card';
+import Screen from '../components/Screen';
 import colors from '../config/colors';
+import { FeedStackParamList } from '../navigation/FeedNavigator';
 
-const listings = [
+export interface ListItem {
+  id: number;
+  title: string;
+  price: number;
+  image: ImageSourcePropType;
+}
+
+const listings: ListItem[] = [
   {
     id: 1,
     title: 'Red jacket for sale',
@@ -20,14 +29,21 @@ const listings = [
   },
 ];
 
-const ListingsScreen = () => {
+type Props = StackScreenProps<FeedStackParamList, 'Listings'>;
+
+const ListingsScreen = ({ navigation: { navigate } }: Props) => {
   return (
     <Screen style={styles.screen}>
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
-          <Card title={item.title} subTitle={'$' + item.price} image={item.image} />
+          <Card
+            title={item.title}
+            subTitle={'$' + item.price}
+            image={item.image}
+            onPress={() => navigate('ListingDetails', item)}
+          />
         )}
       />
     </Screen>

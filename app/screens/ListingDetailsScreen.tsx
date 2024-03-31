@@ -1,16 +1,19 @@
-import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import AppText from '../components/AppText';
 import ListItem from '../components/ListItem';
 import colors from '../config/colors';
+import { FeedStackParamList } from '../navigation/FeedNavigator';
 
-function ListingDetailsScreen() {
+type Props = StackScreenProps<FeedStackParamList, 'ListingDetails'>;
+
+function ListingDetailsScreen({ navigation, route: { params } }: Props) {
   return (
     <View>
-      <Image style={styles.image} source={require('../assets/jacket.jpg')} />
+      <Image style={styles.image} source={params.image} />
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Red jacket for sale</AppText>
-        <AppText style={styles.price}>$100</AppText>
+        <AppText style={styles.title}>{params.title}</AppText>
+        <AppText style={styles.price}>{'$' + params.price}</AppText>
         <View style={styles.userContainer}>
           <ListItem
             image={require('../assets/mosh.jpg')}

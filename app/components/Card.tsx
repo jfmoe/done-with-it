@@ -1,22 +1,31 @@
-import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
-import AppText from './AppText';
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import colors from '../config/colors';
+import AppText from './AppText';
 
 interface Props {
   title: string;
   subTitle: string;
   image: ImageSourcePropType;
+  onPress: () => void;
 }
 
-const Card = ({ title, subTitle, image }: Props) => {
+const Card = ({ title, subTitle, image, onPress }: Props) => {
   return (
-    <View style={styles.card}>
-      <Image source={image} resizeMode="cover" style={styles.image} />
-      <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{subTitle}</AppText>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.card}>
+        <Image source={image} resizeMode="cover" style={styles.image} />
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title}>{title}</AppText>
+          <AppText style={styles.subTitle}>{subTitle}</AppText>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
