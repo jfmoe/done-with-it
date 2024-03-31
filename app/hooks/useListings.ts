@@ -14,9 +14,13 @@ const apiClient = new APIClient<ListItem[]>('/listings');
 
 const useListings = () => {
   const [listings, setListings] = useState<ListItem[]>();
+  const [error, setError] = useState(false);
 
   const requestListings = async () => {
     const response = await apiClient.getAll();
+    if (!response.ok) return setError(true);
+
+    setError(false);
     setListings(response.data);
   };
 
@@ -24,7 +28,7 @@ const useListings = () => {
     requestListings();
   }, []);
 
-  return { listings };
+  return { listings, error, reLoad: requestListings };
 };
 
 export default useListings;
