@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AccountScreen from '../screens/AccountScreen';
-import ListingEditScreen from '../screens/ListingEditScreen';
-import FeedNavigator, { FeedStackParamList } from './FeedNavigator';
 import { NavigatorScreenParams } from '@react-navigation/native';
+import ListingEditScreen from '../screens/ListingEditScreen';
+import AccountNavigator, { AccountStackParamList } from './AccountNavigator';
+import FeedNavigator, { FeedStackParamList } from './FeedNavigator';
 
 export type BottomTabParamsList = {
   Feed: NavigatorScreenParams<FeedStackParamList>;
   ListingEdit: undefined;
-  Account: undefined;
+  Me: NavigatorScreenParams<AccountStackParamList>;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamsList>();
@@ -17,7 +17,7 @@ const AppNavigator = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Feed" component={FeedNavigator} />
       <Tab.Screen name="ListingEdit" component={ListingEditScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
+      <Tab.Screen name="Me" component={AccountNavigator} />
     </Tab.Navigator>
   );
 };
