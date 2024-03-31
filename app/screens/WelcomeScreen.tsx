@@ -1,9 +1,13 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import AppButton from '../components/AppButton';
+import { AuthStackParamList } from '../navigation/AuthNavigator';
 
-const WelcomeScreen = () => {
-  const handleLogin = () => {};
-  const handleRegister = () => {};
+type Props = StackScreenProps<AuthStackParamList, 'Welcome'>;
+
+const WelcomeScreen = ({ navigation: { navigate } }: Props) => {
+  const handleLogin = () => navigate('Login');
+  const handleRegister = () => navigate('Register');
 
   return (
     <ImageBackground

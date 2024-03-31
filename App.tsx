@@ -1,5 +1,10 @@
-import ListingEditScreen from './app/screens/ListingEditScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
 export default function App() {
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }
