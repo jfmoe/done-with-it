@@ -33,6 +33,4 @@ const FormImagePicker = ({ name }: Props) => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default FormImagePicker;

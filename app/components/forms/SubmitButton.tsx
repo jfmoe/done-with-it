@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import AppButton from '../AppButton';
 
 interface Props {
   children: ReactNode;
-  onSubmit: (data: FieldValues) => void;
+  onSubmit: (data: any) => void;
 }
 
 const SubmitButton = ({ children, onSubmit }: Props) => {

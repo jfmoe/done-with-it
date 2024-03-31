@@ -7,14 +7,14 @@ import AppText from '../components/AppText';
 import Card from '../components/Card';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
-import useListings from '../hooks/useListings';
+import { getListings } from '../api/listings';
 import { FeedStackParamList } from '../navigation/FeedNavigator';
 import ActivityIndicator from '../components/ActivityIndicator';
 
 type Props = StackScreenProps<FeedStackParamList, 'Listings'>;
 
 const ListingsScreen = ({ navigation: { navigate } }: Props) => {
-  const { data: listings, error, loading, request } = useListings();
+  const { data: listings, error, loading, request } = getListings();
 
   return (
     <Screen style={styles.screen}>

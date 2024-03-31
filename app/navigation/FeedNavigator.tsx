@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import ListingDetailsScreen from '../screens/ListingDetailsScreen';
 import ListingsScreen from '../screens/ListingScreen';
-import { ListItem } from '../hooks/useListings';
+import { ListItem } from '../api/listings';
 
 export type FeedStackParamList = {
   Listings: undefined;

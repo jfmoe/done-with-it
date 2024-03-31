@@ -11,6 +11,7 @@ import {
 } from '../components/forms';
 import FormImagePicker from '../components/forms/FormImagePicker';
 import useLocation from '../hooks/useLocation';
+import { ListItem, addListing } from '../api/listings';
 
 const schema = z.object({
   title: z.string().min(1),
@@ -38,9 +39,17 @@ const ListingEditScreen = () => {
       images: [],
     },
   });
-  const location = useLocation();
+  const { location } = useLocation();
 
-  const onSubmit = (data: FieldValues) => console.log(location);
+  const onSubmit = async (data: ListItem) => {
+    const response = await addListing({ ...data, location }, onProgress);
+
+    if (!response.ok) return alert('post error');
+
+    alert('success');
+  };
+
+  const onProgress = () => {};
 
   return (
     <Screen style={styles.container}>
