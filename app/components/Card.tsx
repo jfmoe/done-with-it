@@ -1,9 +1,8 @@
 import {
   Image,
-  ImageSourcePropType,
   StyleSheet,
   TouchableWithoutFeedback,
-  View,
+  View
 } from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
@@ -11,15 +10,15 @@ import AppText from './AppText';
 interface Props {
   title: string;
   subTitle: string;
-  image: ImageSourcePropType;
+  imageUrl: string;
   onPress: () => void;
 }
 
-const Card = ({ title, subTitle, image, onPress }: Props) => {
+const Card = ({ title, subTitle, imageUrl, onPress }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image source={image} resizeMode="cover" style={styles.image} />
+        <Image source={{ uri: imageUrl }} resizeMode="cover" style={styles.image} />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.subTitle}>{subTitle}</AppText>

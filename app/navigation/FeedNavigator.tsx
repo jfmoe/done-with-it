@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import ListingDetailsScreen from '../screens/ListingDetailsScreen';
-import ListingsScreen, { ListItem } from '../screens/ListingScreen';
+import ListingsScreen from '../screens/ListingScreen';
+import { ListItem } from '../hooks/useListings';
 
 export type FeedStackParamList = {
   Listings: undefined;
@@ -11,7 +12,7 @@ const Stack = createStackNavigator<FeedStackParamList>();
 
 const FeedNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator>
       <Stack.Screen name="Listings" component={ListingsScreen} />
       <Stack.Screen name="ListingDetails" component={ListingDetailsScreen} />
     </Stack.Navigator>

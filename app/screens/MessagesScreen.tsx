@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { FlatList, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import ListItem from '../components/ListItem';
+import ListItemDeleteAction from '../components/ListItemDeleteAction';
 import ListItemSeparator from '../components/ListItemSeparator';
 import Screen from '../components/Screen';
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
 
 export interface Message {
   id: number;
   title: string;
   description: string;
-  image: ImageSourcePropType;
+  imageUrl: string;
 }
 
 const initialMessages: Message[] = [
@@ -17,13 +17,13 @@ const initialMessages: Message[] = [
     id: 1,
     title: 'T1',
     description: 'D1',
-    image: require('../assets/mosh.jpg'),
+    imageUrl: '../assets/mosh.jpg',
   },
   {
     id: 2,
     title: 'T2',
     description: 'D2',
-    image: require('../assets/mosh.jpg'),
+    imageUrl: '../assets/mosh.jpg',
   },
 ];
 
@@ -49,7 +49,7 @@ const MessagesScreen = () => {
           <ListItem
             title={item.title}
             subTitle={item.description}
-            image={item.image}
+            imageUrl={item.imageUrl}
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item.id)} />
             )}
