@@ -11,7 +11,7 @@ const Stack = createStackNavigator<FeedStackParamList>();
 
 const FeedNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Listings" component={ListingsScreen} />
       <Stack.Screen name="ListingDetails" component={ListingDetailsScreen} />
     </Stack.Navigator>
