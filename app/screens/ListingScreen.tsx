@@ -9,14 +9,16 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import useListings from '../hooks/useListings';
 import { FeedStackParamList } from '../navigation/FeedNavigator';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 type Props = StackScreenProps<FeedStackParamList, 'Listings'>;
 
 const ListingsScreen = ({ navigation: { navigate } }: Props) => {
-  const { listings, error, reLoad } = useListings();
+  const { listings, error, loading, reLoad } = useListings();
 
   return (
     <Screen style={styles.screen}>
+      <ActivityIndicator visible={loading} />
       {error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
